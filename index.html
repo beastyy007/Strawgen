@@ -1,146 +1,999 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Strawgen | Cyber Intelligence</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>N.O Brothers Thread Bar — Bespoke Tailoring & 3D Menswear</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@300;400;500&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- MATRIX BACKGROUND -->
-<canvas id="matrix"></canvas>
+<div id="cursor"></div>
+<div id="cursor-ring"></div>
+<div id="cursor-trail"></div>
 
-<header>
-  <nav>
-    <div class="logo">
-      <img src="images/logo.png" alt="Strawgen Logo">
-      <span class="glitch" data-text="STRAWGEN">STRAWGEN</span>
-    </div>
+<!-- LOADER -->
+<div id="loader">
+  <svg class="thread-svg" viewBox="0 0 120 120" fill="none">
+    <circle cx="60" cy="60" r="54" stroke="rgba(201,169,110,0.15)" stroke-width="0.5"/>
+    <path class="thread-path" d="M30,80 L30,40 L55,75 L55,40 M70,60 C70,48 75,40 85,40 C95,40 100,48 100,60 C100,72 95,80 85,80 C75,80 70,72 70,60" stroke="#C9A96E" stroke-width="1.5" stroke-linecap="round"/>
+    <g class="thread-needle">
+      <line x1="105" y1="35" x2="115" y2="25" stroke="#C9A96E" stroke-width="1" stroke-linecap="round"/>
+      <circle cx="114" cy="24" r="2" stroke="#C9A96E" stroke-width="0.8" fill="none"/>
+    </g>
+  </svg>
+  <div class="loader-logo">N·O Brothers</div>
+  <div class="loader-tagline">Thread Bar — Est. 2018</div>
+</div>
 
-    <div class="menu-toggle" id="menuToggle">☰</div>
-
-    <ul id="navLinks">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#services">Services</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
-</header>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">N·<span>O</span> Brothers</a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#suit-viewer">3D Preview</a></li>
+    <li><a href="#fabric-select">Fabrics</a></li>
+    <li><a href="#craftsmanship">Our Craft</a></li>
+    <li><a href="#testimonials">Clients</a></li>
+  </ul>
+  <a href="#booking" class="nav-cta">Book a Fitting</a>
+</nav>
 
 <!-- HERO -->
-<section id="home" class="hero">
-  <h2 id="typing"></h2>
-  <p>
-    Ethical data recovery & cyber intelligence operations.<br>
-    Zero-trust. Software-only. No false guarantees.
-  </p>
-  <button onclick="document.getElementById('contact').scrollIntoView()">
-    Request Secure Assessment
-  </button>
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="fabric-grid"></div>
+  <div class="hero-content">
+    <div class="hero-label">Bespoke Tailoring Since 2018</div>
+    <h1 class="hero-title">Crafted<br><em>Elegance,</em><br>Tailored Perfection</h1>
+    <p class="hero-sub">Where every thread tells a story. Handcrafted garments born from the finest fabrics, shaped by artisans who breathe life into cloth.</p>
+    <div class="hero-btns">
+      <a href="#booking" class="btn-primary">Start Custom Stitching</a>
+      <a href="#collections" class="btn-ghost">View Collections</a>
+    </div>
+  </div>
+  <div class="hero-badge">
+    <div class="hero-badge-inner">
+      <span>BESPOKE</span><span>✦</span><span>HANDCRAFTED</span><span>✦</span><span>LUXURY</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
 </section>
 
-<!-- ABOUT -->
-<section id="about">
-  <h2 align="center">About Strawgen</h2><br>
-
-  <div class="about-container">
-    <div class="about-text">
-      <p>
-        Strawgen is a cybersecurity-driven data recovery entity operating with a
-        defender’s mindset in a hostile digital landscape.
-      </p>
-      <br>
-      <p>
-        We assume one thing by default — <strong>data is lost because security failed
-        somewhere</strong>. Every device we handle is treated as a potential breach,
-        and every recovery is executed as a controlled cyber operation.
-      </p>
-      <br>
-      <p>
-        We follow zero-trust principles, read-only methodologies, and ethical
-        software-based recovery practices. No hardware tampering. No shortcuts.
-        No fear-based selling.
-      </p>
+<!-- COLLECTIONS -->
+<section id="collections">
+  <div class="section-label">Our Collections</div>
+  <h2 class="section-title">A Stitch Above<br>The Rest</h2>
+  <div class="collections-grid">
+    <div class="collection-card card-1 reveal">
+      <div class="card-bg" style="background:linear-gradient(135deg,#1a3d2a,#0d2518)"></div>
+      <div class="card-pattern"></div><div class="card-gradient"></div><div class="card-sweep"></div><div class="card-border"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <div class="card-category">Signature</div>
+        <div class="card-title">The Royal Sherwani</div>
+        <div class="card-desc">Opulent hand-embroidered regalia for the modern maharaja. Woven gold zardozi across Italian silk.</div>
+      </div>
     </div>
-
-    <div class="about-image">
-      <img src="images/5.png" alt="Cyber Intelligence">
+    <div class="collection-card card-2 reveal">
+      <div class="card-bg" style="background:linear-gradient(135deg,#1f4d34,#142e1f)"></div>
+      <div class="card-pattern"></div><div class="card-gradient"></div><div class="card-sweep"></div><div class="card-border"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <div class="card-category">Heritage</div>
+        <div class="card-title">Classic Bandhgala</div>
+        <div class="card-desc">Timeless mandarin collar mastery in pure wool.</div>
+      </div>
+    </div>
+    <div class="collection-card card-3 reveal">
+      <div class="card-bg" style="background:linear-gradient(135deg,#163324,#0f2a1d)"></div>
+      <div class="card-pattern"></div><div class="card-gradient"></div><div class="card-sweep"></div><div class="card-border"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <div class="card-category">Fusion</div>
+        <div class="card-title">Indo-Western Suit</div>
+        <div class="card-desc">East meets West in perfect harmony.</div>
+      </div>
+    </div>
+    <div class="collection-card card-4 reveal">
+      <div class="card-bg" style="background:linear-gradient(135deg,#2f6e46,#1a3d2a)"></div>
+      <div class="card-pattern"></div><div class="card-gradient"></div><div class="card-sweep"></div><div class="card-border"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <div class="card-category">Bridal</div>
+        <div class="card-title">Wedding Couture</div>
+        <div class="card-desc">Dressed for your defining moment.</div>
+      </div>
+    </div>
+    <div class="collection-card card-5 reveal">
+      <div class="card-bg" style="background:linear-gradient(135deg,#1f4d34,#0f2a1d)"></div>
+      <div class="card-pattern"></div><div class="card-gradient"></div><div class="card-sweep"></div><div class="card-border"></div>
+      <div class="card-arrow">→</div>
+      <div class="card-content">
+        <div class="card-category">Corporate</div>
+        <div class="card-title">Power Suit</div>
+        <div class="card-desc">Command the boardroom in bespoke.</div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- SERVICES -->
-<section id="services">
-  <h2 align="center">Core Services</h2><br>
+<!-- STATS -->
+<div style="padding:0 4rem">
+  <div class="stats-row">
+    <div class="stat-item reveal"><span class="stat-number">1200+</span><div class="stat-label">Garments Crafted</div></div>
+    <div class="stat-item reveal"><span class="stat-number">7 yr</span><div class="stat-label">Of Excellence</div></div>
+    <div class="stat-item reveal"><span class="stat-number">98%</span><div class="stat-label">Client Satisfaction</div></div>
+    <div class="stat-item reveal"><span class="stat-number">40+</span><div class="stat-label">Master Artisans</div></div>
+  </div>
+</div>
 
-  <div class="services">
+<!-- ═══════════ 3D SUIT VIEWER ═══════════ -->
+<section id="suit-viewer">
+  <div class="section-label">Interactive 3D Studio</div>
+  <h2 class="section-title reveal">Experience Men's Clothing<br>In Interactive 3D</h2>
+  <p class="section-body reveal">Load custom 3D garment models (.GLB format), customize fabric textures, colors, and lighting dynamically in real-time. Drag to rotate, scroll to zoom.</p>
 
-    <div class="card">
-      
-      <h3>Incident Consultation</h3><br>
-      <img src="images/2.png" class="card-img" alt="Incident Consultation">
-      <p>
-        Honest feasibility assessment, post-data-loss guidance, and protection
-        against fake recovery scams and unsafe practices.
-      </p>
+  <div class="viewer-layout reveal">
+    <div class="viewer-canvas-wrap">
+      <div class="model-loader-overlay" id="model-loader">
+        <div class="spinner"></div>
+        <div class="loader-status" id="loader-status">Loading 3D Model...</div>
+      </div>
+      <canvas id="three-canvas"></canvas>
+      <div class="viewer-hint">✦ Drag to Rotate · Scroll to Zoom · Right Click to Pan ✦</div>
     </div>
 
-    <div class="card">
-      
-      <h3>Software-Based Data Recovery</h3><br>
-      <img src="images/3.png" class="card-img" alt="Software Data Recovery">
-      <p>
-        Non-invasive recovery for HDDs, SSDs, pen drives, memory cards, and
-        external storage devices using read-only forensic techniques.
-      </p>
-    </div>
+    <div class="viewer-controls">
+      <div>
+        <div class="viewer-ctrl-title">3D Clothing Model</div>
+        <select id="garment-sel" style="width:100%;background:rgba(15,42,29,.9);border:1px solid rgba(201,169,110,.3);color:var(--cream);font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.2em;padding:.8rem 1rem;cursor:none;outline:none;text-transform:uppercase">
+          <option value="glb-model">Custom Formal Suit (.GLB Model)</option>
+          <option value="suit">Procedural Bandhgala Suit</option>
+          <option value="sherwani">Procedural Royal Sherwani</option>
+          <option value="blazer">Procedural Power Blazer</option>
+        </select>
+      </div>
 
-    <div class="card">
-      
-      <h3>VAPT Services</h3><br>
-      <img src="images/4.png" class="card-img" alt="VAPT Services">
-      <p>
-        Identify security vulnerabilities before attackers do through expert
-        vulnerability assessment and penetration testing. We simulate real-world
-        attacks to secure your applications, networks, and infrastructure.
-      </p>
-    </div>
+      <div>
+        <div class="viewer-ctrl-title">Fabric Finish</div>
+        <div class="fabric-swatches" id="fab-swatches">
+          <div class="swatch active" data-fabric="wool" style="background:repeating-linear-gradient(45deg,#2a3a2e,#2a3a2e 2px,#1e2e22 2px,#1e2e22 4px)">
+            <div class="swatch-label">Wool</div>
+          </div>
+          <div class="swatch" data-fabric="linen" style="background:repeating-linear-gradient(0deg,#c4b49a,#c4b49a 1px,#b8a88e 1px,#b8a88e 3px)">
+            <div class="swatch-label">Linen</div>
+          </div>
+          <div class="swatch" data-fabric="silk" style="background:linear-gradient(135deg,#1a2e3a,#0d1f2a,#1a2e3a,#243545)">
+            <div class="swatch-label">Silk</div>
+          </div>
+          <div class="swatch" data-fabric="velvet" style="background:linear-gradient(135deg,#1f0a2e,#2d1040,#1f0a2e)">
+            <div class="swatch-label">Velvet</div>
+          </div>
+        </div>
+      </div>
 
+      <div>
+        <div class="viewer-ctrl-title">Garment Color</div>
+        <div class="color-chips" id="color-chips">
+          <div class="chip active" data-color="0x1F4D34" style="background:#1F4D34"></div>
+          <div class="chip" data-color="0x1a1a2e" style="background:#1a1a2e"></div>
+          <div class="chip" data-color="0x2c1810" style="background:#2c1810"></div>
+          <div class="chip" data-color="0x1a1a1a" style="background:#1a1a1a"></div>
+          <div class="chip" data-color="0x3d2b1f" style="background:#3d2b1f"></div>
+          <div class="chip" data-color="0x4a3728" style="background:#4a3728"></div>
+          <div class="chip" data-color="0xc9a96e" style="background:#c9a96e"></div>
+          <div class="chip" data-color="0x8b7355" style="background:#8b7355"></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="viewer-ctrl-title">Camera Controls</div>
+        <div class="viewer-rotate-hint">
+          <button class="rotate-btn" id="btn-auto-rotate">Auto-Rotate: ON</button>
+          <button class="rotate-btn" id="btn-reset-cam">Reset View</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="contact">
-  <h2 align="center">Contact Strawgen</h2><br>
+<!-- ═══════════ BEFORE / AFTER ═══════════ -->
+<section id="before-after">
+  <div class="section-label">The Difference</div>
+  <h2 class="section-title reveal">Bespoke vs<br>Off-the-Rack</h2>
+  <p class="section-body reveal">Drag the divider to witness the transformation. Every centimetre of a bespoke garment is shaped to your exact form.</p>
 
-  <p style="text-align:center; margin-bottom:30px;">
-    Lost data? Unsure whom to trust? Talk to us before making the problem worse.
-  </p>
-
-  <form>
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea placeholder="Briefly describe the data loss incident"></textarea>
-    <button type="submit">Send Secure Request</button>
-  </form>
-
-  <p style="text-align:center; margin-top:25px;">
-    📧 cyberhandry@gmail.com<br>
-    📞 +91-6353457139
-  </p>
+  <div class="ba-container reveal" id="ba-container">
+    <!-- BEFORE -->
+    <div class="ba-panel ba-before" id="ba-before">
+      <div class="ba-figure">
+        <svg viewBox="0 0 200 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="38" rx="22" ry="26" fill="#1f3d2c" stroke="rgba(201,169,110,0.3)" stroke-width="0.8"/>
+          <path d="M60,75 L40,100 L30,200 L40,280 L160,280 L170,200 L160,100 L140,75 L120,90 L100,95 L80,90 Z" fill="#1a3d2a" stroke="rgba(201,169,110,0.2)" stroke-width="0.8"/>
+          <path d="M60,120 C55,130 52,145 54,160" stroke="rgba(201,169,110,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M140,120 C145,130 148,145 146,160" stroke="rgba(201,169,110,0.15)" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M85,75 L100,95 L115,75" fill="none" stroke="rgba(232,225,213,0.3)" stroke-width="0.8"/>
+          <path d="M80,90 L70,130 L100,120" fill="#163324" stroke="rgba(201,169,110,0.25)" stroke-width="0.5"/>
+          <path d="M120,90 L130,130 L100,120" fill="#163324" stroke="rgba(201,169,110,0.25)" stroke-width="0.5"/>
+          <path d="M50,280 L42,420 L65,420 L100,310 L135,420 L158,420 L150,280 Z" fill="#142e1f" stroke="rgba(201,169,110,0.15)" stroke-width="0.8"/>
+          <text x="100" y="455" text-anchor="middle" font-family="Cinzel,serif" font-size="8" fill="rgba(232,225,213,0.4)" letter-spacing="2">OFF-THE-RACK</text>
+        </svg>
+      </div>
+      <div class="ba-label">Before</div>
+    </div>
+    <!-- AFTER -->
+    <div class="ba-panel ba-after" id="ba-after">
+      <div class="ba-figure">
+        <svg viewBox="0 0 200 480" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <ellipse cx="100" cy="38" rx="22" ry="26" fill="#1f3d2c" stroke="rgba(201,169,110,0.5)" stroke-width="0.8"/>
+          <path d="M72,75 L52,96 L48,200 L52,280 L148,280 L152,200 L148,96 L128,75 L115,88 L100,92 L85,88 Z" fill="#1a3d2a" stroke="rgba(201,169,110,0.5)" stroke-width="1"/>
+          <circle cx="100" cy="150" r="2" fill="#C9A96E"/>
+          <circle cx="100" cy="175" r="2" fill="#C9A96E"/>
+          <circle cx="100" cy="200" r="2" fill="#C9A96E"/>
+          <path d="M56,145 L56,158 L68,158 L68,145" fill="none" stroke="rgba(201,169,110,0.5)" stroke-width="0.8"/>
+          <path d="M85,88 L74,125 L100,115" fill="#163324" stroke="rgba(201,169,110,0.5)" stroke-width="0.8"/>
+          <path d="M115,88 L126,125 L100,115" fill="#163324" stroke="rgba(201,169,110,0.5)" stroke-width="0.8"/>
+          <path d="M60,280 L56,420 L76,420 L100,310 L124,420 L144,420 L140,280 Z" fill="#142e1f" stroke="rgba(201,169,110,0.4)" stroke-width="0.8"/>
+          <text x="100" y="455" text-anchor="middle" font-family="Cinzel,serif" font-size="8" fill="rgba(201,169,110,0.7)" letter-spacing="2">BESPOKE</text>
+        </svg>
+      </div>
+      <div class="ba-label">After</div>
+    </div>
+    <!-- Divider -->
+    <div class="ba-divider" id="ba-divider">
+      <div class="ba-handle">
+        <svg viewBox="0 0 20 20"><path d="M6 10 L2 10 M14 10 L18 10 M2 10 L6 7 M2 10 L6 13 M18 10 L14 7 M18 10 L14 13" stroke="#0F2A1D" stroke-width="1.8" stroke-linecap="round" fill="none"/></svg>
+      </div>
+    </div>
+  </div>
 </section>
 
+<!-- ═══════════ FABRIC SELECTION ═══════════ -->
+<section id="fabric-select">
+  <div class="section-label">Material Library</div>
+  <h2 class="section-title reveal">Choose Your<br>Fabric</h2>
+
+  <div class="fabric-layout">
+    <div>
+      <div class="fabric-filters">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="wool">Wool</button>
+        <button class="filter-btn" data-filter="cotton">Cotton</button>
+        <button class="filter-btn" data-filter="linen">Linen</button>
+        <button class="filter-btn" data-filter="silk">Silk</button>
+      </div>
+      <div class="fabric-grid-sel" id="fabric-grid-sel">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+
+    <div class="fabric-preview-panel">
+      <div class="fabric-preview-card">
+        <div class="fabric-preview-swatch">
+          <canvas id="fabric-canvas" width="400" height="200"></canvas>
+        </div>
+        <div class="fabric-detail" id="fabric-detail">
+          <div class="fabric-detail-name" id="fd-name">Loro Piana Super 150s</div>
+          <div class="fabric-detail-origin" id="fd-origin">Biella, Italy</div>
+          <div class="fabric-detail-desc" id="fd-desc">The finest Merino wool, spun to extraordinary fineness. Unmatched drape, breathability, and luster for the most discerning clients.</div>
+          <div class="fabric-detail-props" id="fd-props">
+            <span class="fabric-prop">Wool</span>
+            <span class="fabric-prop">150s Grade</span>
+            <span class="fabric-prop">Four Season</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFTSMANSHIP -->
+<section id="craftsmanship">
+  <div class="section-label">Our Process</div>
+  <h2 class="section-title reveal">The Art of<br>Bespoke Tailoring</h2>
+  <p class="section-body reveal">Each garment begins as a conversation and ends as a masterpiece. Five meticulous steps, each performed by hand.</p>
+  <div class="craft-layout">
+    <div class="craft-steps">
+      <div class="craft-step reveal"><div class="step-bar"></div><div class="step-num">01</div><div class="step-info"><div class="step-title">The Consultation</div><div class="step-desc">We begin with understanding — your event, your vision, your presence. A personal dialogue that shapes every decision ahead.</div></div></div>
+      <div class="craft-step reveal"><div class="step-bar"></div><div class="step-num">02</div><div class="step-info"><div class="step-title">Precision Measurement</div><div class="step-desc">Over 28 body measurements taken by our master tailors, mapping your unique form with near-surgical accuracy.</div></div></div>
+      <div class="craft-step reveal"><div class="step-bar"></div><div class="step-num">03</div><div class="step-info"><div class="step-title">Fabric Selection</div><div class="step-desc">Curated from mills in Italy, Japan, and India. Silks that breathe, wools that drape, embroideries that gleam.</div></div></div>
+      <div class="craft-step reveal"><div class="step-bar"></div><div class="step-num">04</div><div class="step-info"><div class="step-title">Hand Construction</div><div class="step-desc">120+ hours of artisanal craftsmanship. Each stitch placed with intent, each seam finished by hand.</div></div></div>
+      <div class="craft-step reveal"><div class="step-bar"></div><div class="step-num">05</div><div class="step-info"><div class="step-title">The Grand Reveal</div><div class="step-desc">Your final fitting. The moment fabric becomes yours — adjusted until perfection is not a word but a feeling.</div></div></div>
+    </div>
+    <div class="craft-visual reveal">
+      <div class="craft-panel">
+        <div class="measure-illustration">
+          <svg class="measure-svg" viewBox="0 0 260 260" fill="none">
+            <path d="M130,30 C130,30 115,40 112,55 C109,70 110,80 100,90 C90,100 75,105 70,120 C65,135 68,160 70,180 L90,180 L95,220 L130,220 L165,220 L170,180 L190,180 C192,160 195,135 190,120 C185,105 170,100 160,90 C150,80 151,70 148,55 C145,40 130,30 130,30 Z" stroke="rgba(201,169,110,0.3)" stroke-width="0.8" fill="none" stroke-dasharray="4 3"/>
+            <circle cx="130" cy="20" r="12" stroke="rgba(201,169,110,0.4)" stroke-width="0.8" fill="none"/>
+            <line x1="95" y1="85" x2="165" y2="85" stroke="#C9A96E" stroke-width="1" stroke-dasharray="3 3"/>
+            <line x1="88" y1="105" x2="172" y2="105" stroke="rgba(201,169,110,0.6)" stroke-width="0.8"/>
+            <line x1="92" y1="135" x2="168" y2="135" stroke="#C9A96E" stroke-width="1"/>
+            <line x1="80" y1="160" x2="180" y2="160" stroke="rgba(201,169,110,0.6)" stroke-width="0.8"/>
+            <text x="55" y="89" fill="rgba(201,169,110,0.7)" font-size="7" font-family="Cinzel,serif" letter-spacing="1">SHOULDER</text>
+            <text x="55" y="109" fill="rgba(201,169,110,0.5)" font-size="7" font-family="Cinzel,serif" letter-spacing="1">CHEST</text>
+            <text x="63" y="139" fill="rgba(201,169,110,0.7)" font-size="7" font-family="Cinzel,serif" letter-spacing="1">WAIST</text>
+            <text x="68" y="164" fill="rgba(201,169,110,0.5)" font-size="7" font-family="Cinzel,serif" letter-spacing="1">HIP</text>
+          </svg>
+        </div>
+        <div class="panel-label">28 Measurements · Master-Fitted</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="section-label">Client Stories</div>
+  <h2 class="section-title reveal">Words From<br>Our Patrons</h2>
+  <div class="testimonials-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+      <p class="testimonial-text">The sherwani they crafted for my wedding was beyond anything I imagined. Every single guest asked who the tailor was. N.O Brothers elevated me on the most important day of my life.</p>
+      <div class="testimonial-author"><div class="author-initials">RK</div><div><div class="author-name">Rohan Kapoor</div><div class="author-title">Businessman, Mumbai</div></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+      <p class="testimonial-text">I've worn bespoke tailoring from London to Milan. N.O Brothers rivals every house I've visited — and the personal attention is something no European atelier has ever matched.</p>
+      <div class="testimonial-author"><div class="author-initials">AS</div><div><div class="author-name">Arjun Singh</div><div class="author-title">Executive, Delhi</div></div></div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+      <p class="testimonial-text">My bandhgala fits like it was sewn onto my body. The fabric they sourced from Varanasi is extraordinary. This is not a tailor — this is an art house.</p>
+      <div class="testimonial-author"><div class="author-initials">VM</div><div><div class="author-name">Vikram Mehra</div><div class="author-title">Architect, Ahmedabad</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PREMIUM BOOKING — STEP FLOW ═══════════ -->
+<section id="booking">
+  <div class="booking-inner">
+    <div class="section-label">Begin Your Journey</div>
+    <h2 class="section-title reveal">Reserve Your<br>Private Fitting</h2>
+    <div class="gold-divider"><span class="gold-divider-icon">✦</span></div>
+
+    <div class="booking-steps-nav">
+      <div class="step-tab active" data-step="1"><span class="step-num-badge">01</span>Service</div>
+      <div class="step-tab" data-step="2"><span class="step-num-badge">02</span>Date &amp; Time</div>
+      <div class="step-tab" data-step="3"><span class="step-num-badge">03</span>Your Details</div>
+      <div class="step-tab" data-step="4"><span class="step-num-badge">04</span>Confirm</div>
+    </div>
+
+    <!-- Step 1: Service -->
+    <div class="booking-step-content active" id="step-1">
+      <div class="service-cards">
+        <div class="service-card selected" data-service="Bespoke Sherwani">
+          <div class="service-name">Royal Sherwani</div>
+          <div class="service-desc">Full bespoke sherwani with embroidery consultation</div>
+          <div class="service-price">From ₹18,000</div>
+        </div>
+        <div class="service-card" data-service="Classic Bandhgala">
+          <div class="service-name">Classic Bandhgala</div>
+          <div class="service-desc">Heritage mandarin collar suit, pure wool</div>
+          <div class="service-price">From ₹14,000</div>
+        </div>
+        <div class="service-card" data-service="Indo-Western Fusion">
+          <div class="service-name">Indo-Western Fusion</div>
+          <div class="service-desc">Contemporary East-West hybrid garment</div>
+          <div class="service-price">From ₹16,000</div>
+        </div>
+        <div class="service-card" data-service="Power Suit">
+          <div class="service-name">Power Suit</div>
+          <div class="service-desc">Boardroom bespoke, precision fit</div>
+          <div class="service-price">From ₹20,000</div>
+        </div>
+      </div>
+      <div class="booking-nav">
+        <button class="btn-next" onclick="goStep(2)">Choose Date →</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Date & Time -->
+    <div class="booking-step-content" id="step-2">
+      <div id="calendar-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem">
+        <button onclick="changeMonth(-1)" style="background:transparent;border:1px solid rgba(201,169,110,.2);color:var(--gold);padding:.5rem 1rem;cursor:none;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.2em">← Prev</button>
+        <span id="month-label" style="font-family:'Cinzel',serif;font-size:.9rem;letter-spacing:.2em;color:var(--cream)"></span>
+        <button onclick="changeMonth(1)" style="background:transparent;border:1px solid rgba(201,169,110,.2);color:var(--gold);padding:.5rem 1rem;cursor:none;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.2em">Next →</button>
+      </div>
+      <div class="date-grid" id="cal-grid"></div>
+      <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.4em;color:var(--gold);margin:1.5rem 0 1rem;text-transform:uppercase">Select Time</div>
+      <div class="time-grid" id="time-grid">
+        <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+        <div class="time-slot" data-time="11:30 AM">11:30 AM</div>
+        <div class="time-slot" data-time="1:00 PM">1:00 PM</div>
+        <div class="time-slot" data-time="2:30 PM">2:30 PM</div>
+        <div class="time-slot" data-time="4:00 PM">4:00 PM</div>
+        <div class="time-slot" data-time="5:30 PM">5:30 PM</div>
+        <div class="time-slot disabled">7:00 PM</div>
+        <div class="time-slot disabled">8:30 PM</div>
+      </div>
+      <div class="booking-nav">
+        <button class="btn-back" onclick="goStep(1)">← Back</button>
+        <button class="btn-next" onclick="goStep(3)">Your Details →</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Details -->
+    <div class="booking-step-content" id="step-3">
+      <div class="form-row">
+        <div class="form-field"><label>Full Name</label><input type="text" id="inp-name" placeholder="Your full name"></div>
+        <div class="form-field"><label>WhatsApp Number</label><input type="tel" id="inp-phone" placeholder="+91 00000 00000"></div>
+      </div>
+      <div class="form-row">
+        <div class="form-field"><label>Email Address</label><input type="email" id="inp-email" placeholder="your@email.com"></div>
+        <div class="form-field"><label>Occasion</label>
+          <select id="inp-occasion">
+            <option>Wedding</option><option>Corporate</option><option>Festival</option><option>Special Event</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-field" style="border:1px solid rgba(201,169,110,.1)"><label>Design Notes (Optional)</label><textarea id="inp-notes" rows="3" placeholder="Fabric preferences, colour ideas, embroidery details..."></textarea></div>
+      <div class="booking-nav">
+        <button class="btn-back" onclick="goStep(2)">← Back</button>
+        <button class="btn-next" onclick="goStep(4)">Review →</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Confirm -->
+    <div class="booking-step-content" id="step-4">
+      <div style="background:rgba(31,77,52,.2);border:1px solid rgba(201,169,110,.15);padding:2rem;margin-bottom:2rem">
+        <div style="font-family:'Cinzel',serif;font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem">Your Appointment Summary</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+          <div><div style="font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;font-family:'Jost',sans-serif">Service</div><div id="sum-service" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream)">—</div></div>
+          <div><div style="font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;font-family:'Jost',sans-serif">Date & Time</div><div id="sum-datetime" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream)">—</div></div>
+          <div><div style="font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;font-family:'Jost',sans-serif">Name</div><div id="sum-name" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream)">—</div></div>
+          <div><div style="font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem;font-family:'Jost',sans-serif">Contact</div><div id="sum-phone" style="font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--cream)">—</div></div>
+        </div>
+      </div>
+      <div class="booking-nav">
+        <button class="btn-back" onclick="goStep(3)">← Edit</button>
+        <button class="btn-next" onclick="confirmBooking()">Confirm & Book ✦</button>
+      </div>
+    </div>
+
+    <!-- Success -->
+    <div class="booking-success" id="booking-success">
+      <div class="success-icon">
+        <svg viewBox="0 0 50 50"><polyline points="10,27 20,37 40,17"/></svg>
+      </div>
+      <div class="success-title">Appointment Confirmed</div>
+      <p class="success-sub">Your fitting has been reserved. Our master tailor will reach out within 24 hours to finalize the details. The atelier awaits.</p>
+      <a href="#" class="whatsapp-btn" id="wa-link">
+        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Confirm via WhatsApp
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
-  © 2026 Strawgen Cyber Intelligence —
-  <a style="color: var(--neon);" href="https://linktr.ee/cyberhandry007?utm_source=linktree_profile_share&ltsid=418ef61a-1a8b-4eca-901f-1938d4f7a007" target="_blank">
-    Cyberhandry007
-  </a>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="nav-logo" style="font-size:1.1rem;display:inline-block">N·<span style="color:var(--gold)">O</span> Brothers</div>
+      <p>Bespoke tailoring from the heart of Gujarat. Where tradition meets precision, and every thread is placed with purpose.</p>
+      <div class="footer-socials">
+        <a href="#" class="social-link">in</a>
+        <a href="#" class="social-link">ig</a>
+        <a href="#" class="social-link">fb</a>
+        <a href="#" class="social-link">wa</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Collections</h4>
+      <ul>
+        <li><a href="#">Royal Sherwani</a></li><li><a href="#">Classic Bandhgala</a></li>
+        <li><a href="#">Indo-Western</a></li><li><a href="#">Wedding Couture</a></li><li><a href="#">Corporate Suits</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Atelier</h4>
+      <ul>
+        <li><a href="#">Our Story</a></li><li><a href="#">Master Artisans</a></li>
+        <li><a href="#">Fabrics &amp; Sourcing</a></li><li><a href="#">Process</a></li><li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Visit Us</h4>
+      <ul>
+        <li><a href="#">Anand, Gujarat</a></li><li><a href="#">+91 98765 43210</a></li>
+        <li><a href="#">hello@nobrothers.in</a></li><li><a href="#">Mon–Sat: 10am–8pm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 N.O Brothers Thread Bar. All Rights Reserved.</p>
+    <p>Crafted with precision · Anand, Gujarat</p>
+  </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script>
+// ═══ CURSOR ═══
+const cursor = document.getElementById('cursor');
+const ring = document.getElementById('cursor-ring');
+const trail = document.getElementById('cursor-trail');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX;my=e.clientY;
+  cursor.style.left=mx+'px';cursor.style.top=my+'px';
+  trail.style.left=mx+'px';trail.style.top=my+'px';
+  if(window._lmx!==undefined){
+    const dx=mx-window._lmx,dy=my-window._lmy;
+    const ang=Math.atan2(dy,dx)*180/Math.PI+90;
+    trail.style.transform=`translate(-50%,0) rotate(${ang}deg)`;
+  }
+  window._lmx=mx;window._lmy=my;
+});
+(function animRing(){rx+=(mx-rx)*.12;ry+=(my-ry)*.12;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+document.querySelectorAll('a,button,.collection-card,.craft-step,.testimonial-card,.stat-item,.swatch,.chip,.service-card,.time-slot,.date-cell,.fabric-item').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cursor.style.width='10px';cursor.style.height='10px';ring.style.width='50px';ring.style.height='50px';ring.style.borderColor='rgba(201,169,110,0.8)';});
+  el.addEventListener('mouseleave',()=>{cursor.style.width='6px';cursor.style.height='6px';ring.style.width='32px';ring.style.height='32px';ring.style.borderColor='rgba(201,169,110,0.5)';});
+});
+
+// ═══ LOADER ═══
+window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('hidden'),2200));
+
+// ═══ NAVBAR ═══
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>navbar.classList.toggle('scrolled',scrollY>60));
+
+// ═══ REVEAL ═══
+const revObs=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');revObs.unobserve(e.target);}}),{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>revObs.observe(el));
+
+// ════════════════════════════════════
+// THREE.JS 3D SUIT VIEWER (GLTF + PROCEDURAL)
+// ════════════════════════════════════
+(function init3D(){
+  const canvas=document.getElementById('three-canvas');
+  const wrap=canvas.parentElement;
+  const W=wrap.clientWidth,H=wrap.clientHeight;
+  const loaderOverlay=document.getElementById('model-loader');
+  const loaderStatus=document.getElementById('loader-status');
+
+  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});
+  renderer.setSize(W,H);
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.shadowMap.enabled=true;
+  renderer.shadowMap.type=THREE.PCFSoftShadowMap;
+  renderer.toneMapping=THREE.ACESFilmicToneMapping;
+  renderer.toneMappingExposure=1.25;
+
+  const scene=new THREE.Scene();
+
+  const camera=new THREE.PerspectiveCamera(42,W/H,.1,100);
+  camera.position.set(0,1.2,4.5);
+
+  let controls = null;
+  if(typeof THREE.OrbitControls !== 'undefined'){
+    controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.05;
+    controls.maxPolarAngle = Math.PI / 2 + 0.1;
+    controls.minDistance = 1.5;
+    controls.maxDistance = 8.0;
+    controls.target.set(0, 0, 0);
+  }
+
+  const ambient=new THREE.AmbientLight(0xffeedd,0.7);scene.add(ambient);
+  const key=new THREE.DirectionalLight(0xfff5e0,2.0);key.position.set(3,5,4);key.castShadow=true;scene.add(key);
+  const fill=new THREE.DirectionalLight(0xc9a96e,0.6);fill.position.set(-3,2,-2);scene.add(fill);
+  const rim=new THREE.DirectionalLight(0xffffff,0.8);rim.position.set(0,4,-4);scene.add(rim);
+
+  const gGeo=new THREE.PlaneGeometry(12,12);
+  const gMat=new THREE.MeshLambertMaterial({color:0x0f2a1d,transparent:true,opacity:.35});
+  const ground=new THREE.Mesh(gGeo,gMat);ground.rotation.x=-Math.PI/2;ground.position.y=-1.8;
+  ground.receiveShadow=true;scene.add(ground);
+
+  let suitGroup=new THREE.Group();
+  scene.add(suitGroup);
+
+  let loadedGltfModel = null;
+  let currentColor=0x1F4D34;
+  let currentFabric='wool';
+  let autoRotate=true;
+
+  const fabricPresets = {
+    wool: { roughness: 0.75, metalness: 0.05 },
+    linen: { roughness: 0.90, metalness: 0.00 },
+    silk: { roughness: 0.25, metalness: 0.20 },
+    velvet: { roughness: 0.95, metalness: 0.00 }
+  };
+
+  function applyMaterialSettings(mesh, colorHex, fabricType) {
+    if (!mesh || !mesh.material) return;
+    const preset = fabricPresets[fabricType] || fabricPresets.wool;
+    const mats = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    mats.forEach(mat => {
+      if (mat.isMeshStandardMaterial || mat.isMeshPhongMaterial) {
+        mat.color.setHex(colorHex);
+        mat.roughness = preset.roughness;
+        mat.metalness = preset.metalness;
+        mat.needsUpdate = true;
+      }
+    });
+  }
+
+  function loadGLBModel() {
+    if(loaderOverlay) loaderOverlay.classList.remove('hidden');
+    if(loaderStatus) loaderStatus.textContent = "Loading Custom 3D Model...";
+
+    const gltfLoader = new THREE.GLTFLoader();
+    gltfLoader.load('models/model.glb', function(gltf){
+      while(suitGroup.children.length) suitGroup.remove(suitGroup.children[0]);
+      
+      loadedGltfModel = gltf.scene;
+      
+      const box = new THREE.Box3().setFromObject(loadedGltfModel);
+      const center = box.getCenter(new THREE.Vector3());
+      const size = box.getSize(new THREE.Vector3());
+      const maxDim = Math.max(size.x, size.y, size.z);
+      const scale = 3.2 / (maxDim || 1);
+      
+      loadedGltfModel.scale.set(scale, scale, scale);
+      loadedGltfModel.position.sub(center.multiplyScalar(scale));
+      loadedGltfModel.position.y += 0.2;
+
+      loadedGltfModel.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+          if (!child.material || child.material.type === 'MeshBasicMaterial') {
+            child.material = new THREE.MeshStandardMaterial({
+              color: currentColor,
+              roughness: fabricPresets[currentFabric].roughness,
+              metalness: fabricPresets[currentFabric].metalness
+            });
+          } else {
+            applyMaterialSettings(child, currentColor, currentFabric);
+          }
+        }
+      });
+
+      suitGroup.add(loadedGltfModel);
+
+      if(controls) controls.target.set(0, 0, 0);
+      if(loaderOverlay) loaderOverlay.classList.add('hidden');
+    }, 
+    function(xhr) {
+      if(xhr.lengthComputable && loaderStatus) {
+        const percent = Math.round((xhr.loaded / xhr.total) * 100);
+        loaderStatus.textContent = `Loading 3D Model... ${percent}%`;
+      }
+    },
+    function(error) {
+      console.warn('GLB Load Error, falling back to procedural suit:', error);
+      if(loaderStatus) loaderStatus.textContent = "Building Procedural 3D Suit...";
+      buildProceduralSuit('suit');
+      if(loaderOverlay) loaderOverlay.classList.add('hidden');
+    });
+  }
+
+  function buildProceduralSuit(type) {
+    while(suitGroup.children.length) suitGroup.remove(suitGroup.children[0]);
+    loadedGltfModel = null;
+
+    const preset = fabricPresets[currentFabric] || fabricPresets.wool;
+    const mat = c => new THREE.MeshStandardMaterial({ color: c, roughness: preset.roughness, metalness: preset.metalness });
+    const goldMat = new THREE.MeshStandardMaterial({ color: 0xc9a96e, roughness: 0.3, metalness: 0.6 });
+    const shirtMat = new THREE.MeshStandardMaterial({ color: 0xe8e1d5, roughness: 0.9, metalness: 0 });
+
+    const torsoGeo = new THREE.CylinderGeometry(.55, .48, 1.8, 16);
+    const torso = new THREE.Mesh(torsoGeo, mat(currentColor));
+    torso.position.y = .1; torso.castShadow = true; suitGroup.add(torso);
+
+    const lapL = new THREE.Mesh(new THREE.BoxGeometry(.18, .6, .12), mat(Math.max(0, currentColor - 0x050505)));
+    lapL.position.set(-.2, .5, .5); lapL.rotation.z = .25; lapL.castShadow = true; suitGroup.add(lapL);
+    const lapR = new THREE.Mesh(new THREE.BoxGeometry(.18, .6, .12), mat(Math.max(0, currentColor - 0x050505)));
+    lapR.position.set(.2, .5, .5); lapR.rotation.z = -.25; lapR.castShadow = true; suitGroup.add(lapR);
+
+    const shirt = new THREE.Mesh(new THREE.BoxGeometry(.18, 1.2, .1), shirtMat);
+    shirt.position.set(0, .3, .54); suitGroup.add(shirt);
+
+    for(let i = 0; i < (type === 'sherwani' ? 6 : 4); i++) {
+      const btn = new THREE.Mesh(new THREE.CylinderGeometry(.03, .03, .04, 8), goldMat);
+      btn.position.set(0, .3 - i * .18, .56); btn.rotation.x = Math.PI / 2; suitGroup.add(btn);
+    }
+
+    const shlGeo = new THREE.CylinderGeometry(.12, .15, .7, 8);
+    const shlL = new THREE.Mesh(shlGeo, mat(currentColor)); shlL.position.set(-.65, .85, 0); shlL.rotation.z = Math.PI / 2.2; shlL.castShadow = true; suitGroup.add(shlL);
+    const shlR = new THREE.Mesh(shlGeo, mat(currentColor)); shlR.position.set(.65, .85, 0); shlR.rotation.z = -Math.PI / 2.2; shlR.castShadow = true; suitGroup.add(shlR);
+
+    const armGeo = new THREE.CylinderGeometry(.14, .12, 1.2, 8);
+    const armL = new THREE.Mesh(armGeo, mat(currentColor)); armL.position.set(-.78, .05, 0); armL.rotation.z = .2; armL.castShadow = true; suitGroup.add(armL);
+    const armR = new THREE.Mesh(armGeo, mat(currentColor)); armR.position.set(.78, .05, 0); armR.rotation.z = -.2; armR.castShadow = true; suitGroup.add(armR);
+
+    const headGeo = new THREE.SphereGeometry(.28, 16, 16);
+    const headMat = new THREE.MeshStandardMaterial({ color: 0xd4a574, roughness: .9, metalness: 0 });
+    const head = new THREE.Mesh(headGeo, headMat); head.position.y = 1.38; head.castShadow = true; suitGroup.add(head);
+
+    const trGeo = new THREE.CylinderGeometry(.48, .44, 1.4, 12);
+    const tr = new THREE.Mesh(trGeo, mat(Math.max(0, currentColor - 0x0a0a0a))); tr.position.y = -1.1; tr.castShadow = true; suitGroup.add(tr);
+
+    suitGroup.position.y = 0.2;
+    if(loaderOverlay) loaderOverlay.classList.add('hidden');
+  }
+
+  loadGLBModel();
+
+  const garmentSel = document.getElementById('garment-sel');
+  if(garmentSel){
+    garmentSel.addEventListener('change', (e) => {
+      const val = e.target.value;
+      if(val === 'glb-model') {
+        loadGLBModel();
+      } else {
+        buildProceduralSuit(val);
+      }
+    });
+  }
+
+  document.getElementById('btn-auto-rotate').addEventListener('click', function(){
+    autoRotate=!autoRotate;
+    if(controls) controls.autoRotate = autoRotate;
+    this.textContent='Auto-Rotate: '+(autoRotate?'ON':'OFF');
+  });
+
+  document.getElementById('btn-reset-cam').addEventListener('click',()=>{
+    camera.position.set(0,1.2,4.5);
+    if(controls) controls.target.set(0,0,0);
+  });
+
+  document.querySelectorAll('.chip').forEach(chip=>{
+    chip.addEventListener('click',()=>{
+      document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+      chip.classList.add('active');
+      currentColor=parseInt(chip.dataset.color,16);
+      
+      if(loadedGltfModel) {
+        loadedGltfModel.traverse(child => {
+          if(child.isMesh) applyMaterialSettings(child, currentColor, currentFabric);
+        });
+      } else {
+        buildProceduralSuit(garmentSel ? garmentSel.value : 'suit');
+      }
+    });
+  });
+
+  document.querySelectorAll('.swatch').forEach(sw=>{
+    sw.addEventListener('click',()=>{
+      document.querySelectorAll('.swatch').forEach(s=>s.classList.remove('active'));
+      sw.classList.add('active');
+      currentFabric = sw.dataset.fabric;
+
+      if(loadedGltfModel) {
+        loadedGltfModel.traverse(child => {
+          if(child.isMesh) applyMaterialSettings(child, currentColor, currentFabric);
+        });
+      } else {
+        buildProceduralSuit(garmentSel ? garmentSel.value : 'suit');
+      }
+    });
+  });
+
+  function animate(){
+    requestAnimationFrame(animate);
+    if(controls) {
+      controls.autoRotate = autoRotate;
+      controls.autoRotateSpeed = 2.0;
+      controls.update();
+    } else if(autoRotate) {
+      suitGroup.rotation.y += 0.008;
+    }
+    renderer.render(scene,camera);
+  }
+  animate();
+
+  window.addEventListener('resize',()=>{
+    const W2=wrap.clientWidth,H2=wrap.clientHeight;
+    renderer.setSize(W2,H2);camera.aspect=W2/H2;camera.updateProjectionMatrix();
+  });
+})();
+
+// ════════════════════════════════════
+// BEFORE / AFTER SLIDER
+// ════════════════════════════════════
+(function initBA(){
+  const container=document.getElementById('ba-container');
+  const before=document.getElementById('ba-before');
+  const after=document.getElementById('ba-after');
+  const divider=document.getElementById('ba-divider');
+  if(!container || !before || !after || !divider) return;
+  let dragging=false,pct=50;
+
+  function setPos(p){
+    pct=Math.max(5,Math.min(95,p));
+    before.style.right=(100-pct)+'%';
+    after.style.left=pct+'%';
+    divider.style.left=pct+'%';
+  }
+  setPos(50);
+
+  function getX(e){return e.touches?e.touches[0].clientX:e.clientX;}
+  divider.addEventListener('mousedown',e=>{dragging=true;e.preventDefault();});
+  divider.addEventListener('touchstart',e=>{dragging=true;});
+  window.addEventListener('mousemove',e=>{
+    if(!dragging)return;
+    const rect=container.getBoundingClientRect();
+    setPos((getX(e)-rect.left)/rect.width*100);
+  });
+  window.addEventListener('touchmove',e=>{
+    if(!dragging)return;
+    const rect=container.getBoundingClientRect();
+    setPos((getX(e)-rect.left)/rect.width*100);
+  });
+  window.addEventListener('mouseup',()=>dragging=false);
+  window.addEventListener('touchend',()=>dragging=false);
+  container.addEventListener('click',e=>{
+    const rect=container.getBoundingClientRect();
+    setPos((e.clientX-rect.left)/rect.width*100);
+  });
+})();
+
+// ════════════════════════════════════
+// FABRIC LIBRARY
+// ════════════════════════════════════
+const fabrics=[
+  {name:'Loro Piana Super 150s',origin:'Biella, Italy',desc:'The finest Merino wool spun to extraordinary fineness. Unmatched drape and luster for the most discerning clients.',props:['Wool','150s Grade','Four Season'],type:'wool',color:'#2a3a2e',pattern:'twill'},
+  {name:'Solbiati Linen',origin:'Milan, Italy',desc:'Stonewashed Belgian linen with a natural texture that softens with wear. Perfect for warm Indian evenings.',props:['Linen','Stonewash','Breathable'],type:'linen',color:'#c4b49a',pattern:'plain'},
+  {name:'Dormeuil Amadeus',origin:'Paris, France',desc:'Pure cashmere of extraordinary hand and warmth. Woven for those who understand that some luxuries are worth every moment.',props:['Cashmere','Winter','Luxury'],type:'wool',color:'#1a2040',pattern:'herringbone'},
+  {name:'Zegna Silk Blend',origin:'Trivero, Italy',desc:'Silk-wool blend with a luminous sheen. The preferred choice for ceremonial and wedding garments.',props:['Silk','Wool','Ceremonial'],type:'silk',color:'#1a2e3a',pattern:'plain'},
+  {name:'Pitti Tweed',origin:'Biella, Italy',desc:'Scottish-influenced tweed with Italian craftsmanship. Rich texture suited to heritage and formal occasions.',props:['Wool','Tweed','Heritage'],type:'wool',color:'#3a3020',pattern:'tweed'},
+  {name:'Japanese Cotton',origin:'Osaka, Japan',desc:'High-twist Egyptian cotton from Japanese looms. Crisp, cool, and extraordinarily durable for power suits.',props:['Cotton','High-Twist','Corporate'],type:'cotton',color:'#2a2a3a',pattern:'plain'},
+  {name:'Varanasi Silk',origin:'Varanasi, India',desc:'Hand-woven Banarasi silk with traditional zari work. The gold of Indian textile heritage.',props:['Silk','Zari','Heritage'],type:'silk',color:'#2a1a0a',pattern:'brocade'},
+  {name:'Irish Linen',origin:'Belfast, Ireland',desc:'Classic Belfast linen renowned for its strength and natural texture. Ideal for summer sherwanis.',props:['Linen','Summer','Natural'],type:'linen',color:'#d4c4a0',pattern:'plain'},
+  {name:'Merino Flannel',origin:'Huddersfield, England',desc:'Soft-nap flannel in pure merino. The quintessential fabric for Bandhgala suits across all seasons.',props:['Wool','Flannel','All-Season'],type:'wool',color:'#2a2030',pattern:'plain'},
+];
+
+function drawFabricPattern(canvas,fabric){
+  const ctx=canvas.getContext('2d');
+  const W=canvas.width,H=canvas.height;
+  ctx.fillStyle=fabric.color;ctx.fillRect(0,0,W,H);
+  ctx.globalAlpha=.15;
+  if(fabric.pattern==='twill'){
+    ctx.strokeStyle='#fff';ctx.lineWidth=1;
+    for(let i=-H;i<W+H;i+=8){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+H,H);ctx.stroke();}
+  } else if(fabric.pattern==='herringbone'){
+    ctx.strokeStyle='#fff';ctx.lineWidth=1;
+    for(let i=0;i<W;i+=8){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+H/2,H/2);ctx.lineTo(i,H);ctx.stroke();}
+  } else if(fabric.pattern==='tweed'){
+    ctx.fillStyle='#fff';
+    for(let y=0;y<H;y+=6)for(let x=0;x<W;x+=6){if(Math.random()>.6)ctx.fillRect(x,y,3,3);}
+  } else if(fabric.pattern==='brocade'){
+    ctx.strokeStyle='#C9A96E';ctx.lineWidth=1;
+    for(let i=0;i<W;i+=20){ctx.beginPath();ctx.moveTo(i,0);ctx.lineTo(i+10,H/2);ctx.lineTo(i,H);ctx.stroke();}
+    for(let i=0;i<H;i+=20){ctx.beginPath();ctx.moveTo(0,i);ctx.lineTo(W/2,i+10);ctx.lineTo(W,i);ctx.stroke();}
+  } else {
+    ctx.strokeStyle='#fff';ctx.lineWidth=.5;
+    for(let y=0;y<H;y+=4){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+  }
+  ctx.globalAlpha=1;
+}
+
+function renderFabricGrid(filter){
+  const grid=document.getElementById('fabric-grid-sel');
+  if(!grid) return;
+  grid.innerHTML='';
+  const filtered=filter==='all'?fabrics:fabrics.filter(f=>f.type===filter);
+  filtered.forEach((fab,i)=>{
+    const div=document.createElement('div');
+    div.className='fabric-item'+(i===0?' active':'');
+    const cvs=document.createElement('canvas');
+    cvs.className='fabric-texture';cvs.width=200;cvs.height=200;
+    drawFabricPattern(cvs,fab);
+    const zoom=document.createElement('div');zoom.className='fabric-zoom';
+    zoom.innerHTML='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--gold)"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg><span>Zoom</span>';
+    div.appendChild(cvs);div.appendChild(zoom);
+    div.addEventListener('click',()=>{
+      document.querySelectorAll('.fabric-item').forEach(f=>f.classList.remove('active'));
+      div.classList.add('active');
+      document.getElementById('fd-name').textContent=fab.name;
+      document.getElementById('fd-origin').textContent=fab.origin;
+      document.getElementById('fd-desc').textContent=fab.desc;
+      const props=document.getElementById('fd-props');props.innerHTML='';
+      fab.props.forEach(p=>{const s=document.createElement('span');s.className='fabric-prop';s.textContent=p;props.appendChild(s);});
+      const pc=document.getElementById('fabric-canvas');pc.width=400;pc.height=200;
+      drawFabricPattern(pc,fab);
+    });
+    grid.appendChild(div);
+  });
+  const pc=document.getElementById('fabric-canvas');
+  if(pc && filtered.length>0) {
+    pc.width=400;pc.height=200;
+    drawFabricPattern(pc,filtered[0]);
+  }
+}
+renderFabricGrid('all');
+
+document.querySelectorAll('.filter-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderFabricGrid(btn.dataset.filter);
+  });
+});
+
+// ════════════════════════════════════
+// BOOKING — STEP FLOW
+// ════════════════════════════════════
+let bookingData={service:'Bespoke Sherwani',date:'',time:''};
+
+document.querySelectorAll('.service-card').forEach(card=>{
+  card.addEventListener('click',()=>{
+    document.querySelectorAll('.service-card').forEach(c=>c.classList.remove('selected'));
+    card.classList.add('selected');bookingData.service=card.dataset.service;
+  });
+});
+
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const DAYS=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+let calDate=new Date();
+
+function renderCalendar(){
+  const grid=document.getElementById('cal-grid');
+  if(!grid) return;
+  grid.innerHTML='';
+  document.getElementById('month-label').textContent=MONTHS[calDate.getMonth()]+' '+calDate.getFullYear();
+  DAYS.forEach(d=>{const el=document.createElement('div');el.className='date-cell day-name';el.textContent=d;grid.appendChild(el);});
+  const first=new Date(calDate.getFullYear(),calDate.getMonth(),1).getDay();
+  const days=new Date(calDate.getFullYear(),calDate.getMonth()+1,0).getDate();
+  for(let i=0;i<first;i++){const el=document.createElement('div');el.className='date-cell disabled';grid.appendChild(el);}
+  const today=new Date();
+  for(let d=1;d<=days;d++){
+    const el=document.createElement('div');
+    const thisDate=new Date(calDate.getFullYear(),calDate.getMonth(),d);
+    const isPast=thisDate<today&&thisDate.toDateString()!==today.toDateString();
+    const isFri=thisDate.getDay()===5;
+    el.className='date-cell '+(isPast||isFri?'disabled':'available');
+    el.textContent=d;
+    if(!isPast&&!isFri)el.addEventListener('click',()=>{
+      document.querySelectorAll('.date-cell.selected').forEach(c=>c.classList.remove('selected'));
+      el.classList.add('selected');
+      bookingData.date=d+' '+MONTHS[calDate.getMonth()]+' '+calDate.getFullYear();
+    });
+    grid.appendChild(el);
+  }
+}
+renderCalendar();
+window.changeMonth=function(dir){calDate=new Date(calDate.getFullYear(),calDate.getMonth()+dir,1);renderCalendar();};
+
+document.querySelectorAll('.time-slot:not(.disabled)').forEach(slot=>{
+  slot.addEventListener('click',()=>{
+    document.querySelectorAll('.time-slot').forEach(s=>s.classList.remove('selected'));
+    slot.classList.add('selected');bookingData.time=slot.dataset.time;
+  });
+});
+
+window.goStep=function(n){
+  document.querySelectorAll('.booking-step-content').forEach(el=>el.classList.remove('active'));
+  document.querySelectorAll('.step-tab').forEach((tab,i)=>{tab.classList.toggle('active',i+1===n);tab.classList.toggle('done',i+1<n);});
+  const el=document.getElementById('step-'+n);if(el)el.classList.add('active');
+  if(n===4){
+    document.getElementById('sum-service').textContent=bookingData.service||'—';
+    document.getElementById('sum-datetime').textContent=(bookingData.date&&bookingData.time)?bookingData.date+' · '+bookingData.time:'—';
+    document.getElementById('sum-name').textContent=document.getElementById('inp-name').value||'—';
+    document.getElementById('sum-phone').textContent=document.getElementById('inp-phone').value||'—';
+  }
+};
+
+window.confirmBooking=function(){
+  document.querySelectorAll('.booking-step-content').forEach(el=>el.classList.remove('active'));
+  document.querySelector('.booking-steps-nav').style.display='none';
+  document.getElementById('booking-success').classList.add('visible');
+  const name=document.getElementById('inp-name').value;
+  const msg=encodeURIComponent(`Hello N.O Brothers! I'd like to book a fitting.\n\nService: ${bookingData.service}\nDate: ${bookingData.date}\nTime: ${bookingData.time}\nName: ${name}`);
+  document.getElementById('wa-link').href=`https://wa.me/919876543210?text=${msg}`;
+};
+</script>
 </body>
 </html>
